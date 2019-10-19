@@ -4,3 +4,9 @@ body{
   background: linear-gradient(to right, #190A05, #870000); 
   
 }
+
+.row {
+  display: block;
+  margin-top: 20px;
+  
+}
