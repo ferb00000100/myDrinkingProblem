@@ -23,41 +23,42 @@
 	var byTags = 'by_tags';
 	var selection = [];
 	// var baseBrewerydbURL ="https://api.openbrewerydb.org/breweries?";
-	var baseBrewerydbURL ="https://api.openbrewerydb.org/breweries?by_city=denver";
-	var brewerydb = baseBrewerydbURL;
+	// var brewerydb = baseBrewerydbURL;
 
 
+	function outputResults() {
 
-	$.ajax({
-		url: brewerydb,
+
+	}
+
+	function getResults(selectedState){
+		var baseBrewerydbURL ="https://api.openbrewerydb.org/breweries?by_state="+selectedState;
+		$.ajax({
+		url: baseBrewerydbURL,
 		method: "GET"
-	}).then(function (response) {
-		console.log(response);
-		response = JSON.stringify((response));
-		$('#city').text(response);
-		// for ( var i = 0; i < 10; i++){
-		// console.log(response.restaurants[i]);
-		// console.log(response.restaurants[i].restaurant.name);
-		// console.log(response.restaurants[i].establishment[i]);
-		// }
-	});
+		}).then(function (response) {
+			console.log(response);
+			outputResults = {
+				"Name": response[0].name,
+				"Phone Number": response[0].phone,
+				"State": response[0].state,
+				"Address": response[0].street,
+				"Web URL": response[0].website_url
+			}
+		console.log(outputResults);
+		// response = JSON.stringify((response));
+		});
+	}
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-// function myFunction() {
-// 	document.getElementById("myDropdown").classList.toggle("show");
-// }
+	function getState() {
+		var selectedState = $( "select#states" ).val();
+		// console.log(selectedState);
+		getResults(selectedState);
+	}
 
-// Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-// 	if (!event.target.matches('.dropbtn')) {
-// 		var dropdowns = document.getElementsByClassName("dropdown-content");
-// 		var i;
-// 		for (i = 0; i < dropdowns.length; i++) {
-// 			var openDropdown = dropdowns[i];
-// 			if (openDropdown.classList.contains('show')) {
-// 				openDropdown.classList.remove('show');
-// 			}
-// 		}
-// 	}
-// }
+$( "select" ).change( getState );
+// getState();
+
+// test
+
+
