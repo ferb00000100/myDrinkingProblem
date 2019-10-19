@@ -38,12 +38,15 @@
 		method: "GET"
 		}).then(function (response) {
 			console.log(response);
+			for (var i = 0; i < response.length; i++) {
+				console.log("length is " + response.length)
 			outputResults = {
-				"Name": response[0].name,
-				"Phone Number": response[0].phone,
-				"State": response[0].state,
-				"Address": response[0].street,
-				"Web URL": response[0].website_url
+				"Name": response[i].name,
+				"Phone Number": response[i].phone,
+				"State": response[i].state,
+				"Address": response[i].street,
+				"Web URL": response[i].website_url
+			}
 			}
 		console.log(outputResults);
 		// response = JSON.stringify((response));
