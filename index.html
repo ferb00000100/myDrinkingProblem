@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<title>My Drinking Problem</title>
+	<!--	<script src="https://kit.fontawesome.com/16968fde10.js" crossorigin="anonymous"></script>-->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="https://kit.fontawesome.com/16968fde10.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="assests/css/styleProject.css" />
+
+
+<body>
+<nav>
+	<div class="nav-wrapper brown darken-3">
+		<a href="#" class="brand-logo center">My Drinking Problem</a>
+		<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li><a href="sass.html"><i class="fas fa-beer"></i></a></li>
+			<li class="date"></li>
+			<!--				<li><a href="badges.html">Components</a></li>-->
+			<!--				<li><a href="collapsible.html"></a></li>-->
+		</ul>
+	</div>
+</nav>
+
+<div class="container selectContainer">
+	<select id="states" class="browser-default btn-small">
+		<option selected value="test" disabled selected>Select your City</option>
+		<option value="Alabama">Alabama</option>
+		<option value="Alaska">Alaska</option>
+		<option value="Arizona">Arizona</option>
+		<option value="Arkansas">Arkansas</option>
+		<option value="California">California</option>
+		<option value="Colorado">Colorado</option>
+		<option value="Connecticut">Connecticut</option>
+		<option value="Delaware">Delaware</option>
+		<option value="Florida">Florida</option>
+		<option value="Georgia">Georgia</option>
+		<option value="Hawaii">Hawaii</option>
+		<option value="Idaho">Idaho</option>
+		<option value="Illinois">Illinois</option>
+		<option value="Indiana">Indiana</option>
+		<option value="Iowa">Iowa</option>
+		<option value="Kansas">Kansas</option>
+		<option value="Kentucky">Kentucky</option>
+		<option value="Louisiana">Louisiana</option>
+		<option value="Maine">Maine</option>
+		<option value="Maryland">Maryland</option>
+		<option value="Massachusetts">Massachusetts</option>
+		<option value="Michigan">Michigan</option>
+		<option value="Minnesota">Minnesota</option>
+		<option value="Mississippi">Mississippi</option>
+		<option value="Missouri">Missouri</option>
+		<option value="Montana">Montana</option>
+		<option value="Nebraska">Nebraska</option>
+		<option value="Nevada">Nevada</option>
+		<option value="New Hampshire">New Hampshire</option>
+		<option value="New Jersey">New Jersey</option>
+		<option value="New Mexico">New Mexico</option>
+		<option value="New York">New York</option>
+		<option value="North Carolina">North Carolina</option>
+		<option value="North Dakota">North Dakota</option>
+		<option value="Ohio">Ohio</option>
+		<option value="Oregon">Oregon</option>
+		<option value="Pennsylvania">Pennsylvania</option>
+		<option value="Rhode Island">Rhode Island</option>
+		<option value="South Carolina">South Carolina</option>
+		<option value="South Dakota">South Dakota</option>
+		<option value="Tennessee">Tennessee</option>
+		<option value="Texas">Texas</option>
+		<option value="Utah">Utah</option>
+		<option value="Vermont">Vermont</option>
+		<option value="Virginia">Virginia</option>
+		<option value="Washington">Washington</option>
+		<option value="West Virginia">West Virginia</option>
+		<option value="Wisconsin">Wisconsin</option>
+		<option value="Wyoming">Wyoming</option>
+	</select>
+</div>
+
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<h4 class="brew-title"></h4>
+		<div class="breweries"></div>
+	</div>
+	<div class="modal-footer">
+		<a class="modal-close waves-effect waves-green btn-flat">close</a>
+	</div>
+</div>
+
+<div>
+	<div class="add">
+		<a class="btn-floating btn-large waves-effect waves-optionght red"><i class="material-icons">+</i></a>
+		<ul class="favs"></ul>
+	</div>
+
+	<div class="minus">
+		<a class="btn-floating btn-large waves-effect waves-optionght #1065A8"><i class="material-icons">-</i></a>
+	</div>
+</div>
+<script src="assests/script.js"></script>
+
+</body>
+</html>
