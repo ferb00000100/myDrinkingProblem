@@ -1,64 +1,72 @@
 
 
-// Parameters
-// by_city
-// by_name
-// by_state
-// by_type
-// by_tag
-// by_tags
-// sort  + for ascending - for descending comma separated  example: sort=-name,+type,city
-
-	var city = 'denver';
-	var name = '';
-	var state = '';
-	var type = '';
-	var tag = '';
-	var tags = '';
-	var byCity = 'by_city';
-	var byName = 'by_name';
-	var byState = 'by_state';
-	var byType = 'by_type';
-	var byTag = 'by_tag';
-	var byTags = 'by_tags';
-	var selection = [];
-	// var baseBrewerydbURL ="https://api.openbrewerydb.org/breweries?";
-	// var brewerydb = baseBrewerydbURL;
+$(document).ready(function () {
+	var date = moment().format('MM/D/YYYY');
+	$('.date').append(date);
 
 
-	function outputResults() {
+	function favorites(x) {
+		$('.add').on('click', function () {
+			var selectedFav = $('<li>').text(x);
 
+				});
 
 	}
 
-	function getResults(selectedState){
-		var baseBrewerydbURL ="https://api.openbrewerydb.org/breweries?by_state="+selectedState;
+
+
+	// getResults will run the Ajax query to grab the state selected brewery information.
+	// it will open a modal with the results.  Once it is closed the data will be removed.
+	function getResults(selectedState) {
+		var baseBrewerydbURL = "https://api.openbrewerydb.org/breweries?by_state=" + selectedState;
 		$.ajax({
-		url: baseBrewerydbURL,
-		method: "GET"
+			url: baseBrewerydbURL,
+			method: "GET"
 		}).then(function (response) {
-			console.log(response);
-			outputResults = {
-				"Name": response[0].name,
-				"Phone Number": response[0].phone,
-				"State": response[0].state,
-				"Address": response[0].street,
-				"Web URL": response[0].website_url
-			}
-		console.log(outputResults);
-		// response = JSON.stringify((response));
+			// console.log(response);
+			var array = response;
+			array.forEach(function (e) {
+				// console.log(e);
+				$('.modal').modal({
+					dismissible: true
+				});
+
+				var name = e.name;
+				var number = e.phone;
+				var state = e.state;
+				var address = e.street;
+				var url = e.website_url;
+				var brewList = $('<p>');
+				// brewName = $('<link>').text(name);
+				// brewName.attr({type: 'button', class: 'brewName'});
+
+				$('.brew-title').html(selectedState);
+				$('.breweries').append(brewList);
+
+				brewList.append(name + '<br>');
+				brewList.append(address + ', ' + state + '<br>');
+				brewList.append(url + '<br>');
+				brewList.append(number);
+				brewList.append('<hr>');
+				$('.modal').modal('open');
+			});
 		});
 	}
 
+	// getState will take the input of the selector and run the getResults function
 	function getState() {
-		var selectedState = $( "select#states" ).val();
+
+		var selectedState = $("select#states").val();
 		// console.log(selectedState);
 		getResults(selectedState);
 	}
 
-$( "select" ).change( getState );
-// getState();
+// on selection of the city the get State function runs.
+	$("select").change(getState);
 
-// test
-
+// this function clears out the breweries from previous searches to avoid stacking
+	$('.modal-close').on('click', function () {
+		$('.breweries').empty();
+	});
+});
 
