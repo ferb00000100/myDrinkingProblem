@@ -13,3 +13,7 @@ body{
     width: 45% !important ;
     height: 85% !important ;
 }
+
+.favs{
+    align-content: end;
+}

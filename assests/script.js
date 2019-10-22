@@ -1,19 +1,19 @@
 
 
 $(document).ready(function () {
-	var date = moment().format('MM/D/YYYY');
-	$('.date').append(date);
+
+	// Display the date and Time
+	var dateTime = moment().format('LLL');
+	$('.date').append(dateTime);
 
 
+	// Incomplete Need to add favorites
 	function favorites(x) {
 		$('.add').on('click', function () {
 			var selectedFav = $('<li>').text(x);
 
-				});
-
+		});
 	}
-
-
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
 	// it will open a modal with the results.  Once it is closed the data will be removed.
@@ -49,9 +49,14 @@ $(document).ready(function () {
 				if (address === ''){
 					address = 'No Address Provided';
 				}
-				brewList.append(name + '<br>');
+				// brewList.append(name + '<br>');
+			// <a class="btn-floating btn-large waves-effect waves-optionght red"><i class="material-icons">+</i></a>
+				brewList.append(name + ' <a class="btn-floating btn-small waves-effect waves-light' +
+					' red"><i' +
+					' class="material-icons">+</i></a>' +
+					' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
+					' class="material-icons">-</i></a>' + '<br>');
 				brewList.append(address + ', ' + state + '<br>');
-				// brewList.append(url + '<br>');
 				brewList.append('<a id="link" href="'+ url +'" target="_blank" >view web site</a>'+'<br>');
 				brewList.append(number);
 				brewList.append('<hr>');
