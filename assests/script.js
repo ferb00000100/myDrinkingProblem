@@ -40,12 +40,19 @@ $(document).ready(function () {
 				// brewName = $('<link>').text(name);
 				// brewName.attr({type: 'button', class: 'brewName'});
 
+				// Format phone number
+				number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 				$('.brew-title').html(selectedState);
 				$('.breweries').append(brewList);
 
+				// Verify address,  If not print "No Address Provided"
+				if (address === ''){
+					address = 'No Address Provided';
+				}
 				brewList.append(name + '<br>');
 				brewList.append(address + ', ' + state + '<br>');
-				brewList.append(url + '<br>');
+				// brewList.append(url + '<br>');
+				brewList.append('<a id="link" href="'+ url +'" target="_blank" >view web site</a>'+'<br>');
 				brewList.append(number);
 				brewList.append('<hr>');
 				$('.modal').modal('open');
