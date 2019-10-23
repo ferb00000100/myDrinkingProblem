@@ -32,10 +32,10 @@ body {
   height: 100%;
   padding-top: 0px;
   padding-bottom: 0px;
-  background: rgb(215, 178, 14);
+  background: rgb(244, 208, 10);
   background: linear-gradient(
-    277deg,
-    rgba(215, 178, 14, 1) 0%,
+    180deg,
+    rgba(244, 208, 10, 1) 0%,
     rgba(242, 152, 0, 1) 100%
   );
   float: left;
