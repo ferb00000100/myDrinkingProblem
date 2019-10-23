@@ -14,17 +14,19 @@ User Story
 * As a Beer Drinker I want to find the closets brewery and it’s menu and good prices
 * As a Beer Drinker I want to know about brewery events
 
+Framework
+
+* Materialize
+* Font-Awesome
+
 APIs
-* uptapped   
-https://untappd.com/login?go_to=https://untappd.com/api
+* moment for Date and time  
 
-* breweryDB    
-https://www.brewerydb.com/developers/docs/endpoint/style-index
-
-* Mapping    http://beermapping.com/api/
+* openbrewerydb    
+https://api.openbrewerydb.org/
 
 Tasks
 * Bob Front End
 * Jordan Front End
-* Jason Back End
+* Jason Back End 
 

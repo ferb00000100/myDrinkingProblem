@@ -1,19 +1,19 @@
 
 
 $(document).ready(function () {
-	var date = moment().format('MM/D/YYYY');
-	$('.date').append(date);
+
+	// Display the date and Time
+	var dateTime = moment().format('LLL');
+	$('.date').append(dateTime);
 
 
+	// Incomplete Need to add favorites
 	function favorites(x) {
 		$('.add').on('click', function () {
 			var selectedFav = $('<li>').text(x);
 
-				});
-
+		});
 	}
-
-
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
 	// it will open a modal with the results.  Once it is closed the data will be removed.
@@ -40,12 +40,23 @@ $(document).ready(function () {
 				// brewName = $('<link>').text(name);
 				// brewName.attr({type: 'button', class: 'brewName'});
 
+				// Format phone number
+				number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 				$('.brew-title').html(selectedState);
 				$('.breweries').append(brewList);
 
+				// Verify address,  If not print "No Address Provided"
+				if (address === ''){
+					address = 'No Address Provided';
+				}
 				brewList.append(name + '<br>');
+				// brewList.append(name + ' <a class="add btn-floating btn-small waves-effect waves-light' +
+				// 	' red"><i' +
+				// 	' class="material-icons">+</i></a>' +
+				// 	' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
+				// 	' class="remove material-icons">-</i></a>' + '<br>');
 				brewList.append(address + ', ' + state + '<br>');
-				brewList.append(url + '<br>');
+				brewList.append('<a id="link" href="'+ url +'" target="_blank" >view web site</a>'+'<br>');
 				brewList.append(number);
 				brewList.append('<hr>');
 				$('.modal').modal('open');
@@ -68,5 +79,12 @@ $(document).ready(function () {
 	$('.modal-close').on('click', function () {
 		$('.breweries').empty();
 	});
+
+	$('.add').on('click', function () {
+		console.log("clikced");
+		console.log(this);
+	});
+
 });
+
 
