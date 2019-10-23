@@ -49,12 +49,12 @@ $(document).ready(function () {
 				if (address === ''){
 					address = 'No Address Provided';
 				}
-				brewList.append(name + '<br>');
-				// brewList.append(name + ' <a class="add btn-floating btn-small waves-effect waves-light' +
-				// 	' red"><i' +
-				// 	' class="material-icons">+</i></a>' +
-				// 	' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
-				// 	' class="remove material-icons">-</i></a>' + '<br>');
+				// brewList.append(name + '<br>');
+				brewList.append(name + ' <a class="add btn-floating btn-small waves-effect waves-light' +
+					' red"><i' +
+					' class="material-icons">+</i></a>' +
+					' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
+					' class="remove material-icons">-</i></a>' + '<br>');
 				brewList.append(address + ', ' + state + '<br>');
 				brewList.append('<a id="link" href="'+ url +'" target="_blank" >view web site</a>'+'<br>');
 				brewList.append(number);
