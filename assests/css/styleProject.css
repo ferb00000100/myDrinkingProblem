@@ -17,3 +17,11 @@ body{
 .favs{
     align-content: end;
 }
+=======
+=======
+.row {
+  display: block;
+  margin-top: 20px;
+  
+}
+
