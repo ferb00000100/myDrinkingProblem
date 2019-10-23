@@ -1,26 +1,50 @@
-body{
-  background: #870000;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #190A05, #870000);  
-  background: linear-gradient(to right, #190A05, #870000); 
-  
+html {
+  height: 100%;
 }
 
-.selectContainer{
- width: 20%;
+body {
+  height: 100%;
+  background: #870000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #190a05, #870000);
+  background: linear-gradient(to right, #190a05, #870000);
+}
+
+.selectContainer {
+  width: 20%;
 }
 
 .modal {
-    width: 45% !important ;
-    height: 85% !important ;
+  width: 45% !important ;
+  height: 85% !important ;
 }
 
-.favs{
-    align-content: end;
+.favs {
+  align-content: end;
 }
 
 .row {
   display: block;
   margin-top: 20px;
-  
 }
 
+.section {
+  width: 300px;
+  height: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: rgb(215, 178, 14);
+  background: linear-gradient(
+    277deg,
+    rgba(215, 178, 14, 1) 0%,
+    rgba(242, 152, 0, 1) 100%
+  );
+  float: left;
+}
+
+.minus {
+  float: left;
+}
+
+.collapsible {
+  margin: 0;
+}
