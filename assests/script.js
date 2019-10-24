@@ -6,20 +6,16 @@ $(document).ready(function () {
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
 
+	function init() {
 
-	// Incomplete Need to add favorites
-	// function saveFavorites(index) {
-	// 	myClass = index;
-	// 	console.log(index);
-	// 	var selectedFav = $('<p>')
-	// 	$('#favorites').append(selectedFav);
-	//
-	// 	$(myClass).append(selectedFav);
+		var getFavs = JSON.parse(localStorage.getItem([i]));
+		if (events === null) {
+			return;
+		} else {
+			$(inputID).attr("placeholder", events);
+		}
 
-			// ' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
-			// ' class="remove material-icons">-</i></a>' + '<br>');
-
-	// }
+	}
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
 	// it will open a modal with the results.  Once it is closed the data will be removed.
@@ -89,7 +85,13 @@ $(document).ready(function () {
 				//This will grab the value of the index
 				var selectedIndex = $(this).data('index');
 				// console.log(selectedIndex);
-				console.log(breweryArray[selectedIndex]);
+				// console.log(breweryArray[selectedIndex]);
+				var favBrewName = breweryArray[selectedIndex].breweryName;
+				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
+				var favBrew = $('<p>');
+				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+				$('#favorites').append(favBrew);
+				localStorage.setItem(selectedIndex, favBrewName);
 			});
 
 		});
@@ -112,7 +114,7 @@ $(document).ready(function () {
 		$('.breweries').empty();
 	});
 
-
+	init();
 });
 
 
