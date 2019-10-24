@@ -8,18 +8,18 @@ $(document).ready(function () {
 
 
 	// Incomplete Need to add favorites
-	function saveFavorites(index) {
-		myClass = index;
-		console.log(index);
-		var selectedFav = $('<p>')
-		$('#favorites').append(selectedFav);
-
-		$(myClass).append(selectedFav);
+	// function saveFavorites(index) {
+	// 	myClass = index;
+	// 	console.log(index);
+	// 	var selectedFav = $('<p>')
+	// 	$('#favorites').append(selectedFav);
+	//
+	// 	$(myClass).append(selectedFav);
 
 			// ' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
 			// ' class="remove material-icons">-</i></a>' + '<br>');
 
-	}
+	// }
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
 	// it will open a modal with the results.  Once it is closed the data will be removed.
@@ -29,11 +29,12 @@ $(document).ready(function () {
 			url: baseBrewerydbURL,
 			method: "GET"
 		}).then(function (response) {
-			console.log(response);
+			// console.log(response);
 			var array = response;
+			var breweryArray = [];
 			array.forEach(function (e, i) {
 				i = JSON.stringify(i);
-				console.log("this is i "+ i);
+				// console.log("this is i "+ i);
 				// console.log("this is e "+ e.name);
 				$('.modal').modal({
 					dismissible: true
@@ -47,11 +48,8 @@ $(document).ready(function () {
 				var breweries = $('<div data-index=' + i + '>');
 				var brewList = $('<p>');
 
+				// Append the <p> to the <div>
 				breweries.append(brewList);
-
-				// var title = $( "em" ).attr( "title" );
-				// $( "div" ).text( title );
-
 
 				// Format phone number
 				number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
@@ -78,22 +76,22 @@ $(document).ready(function () {
 
 				$('.modal').modal('open');
 
-				breweryObject = {
-					brewIDIndex: i,
-					state: state,
-					breweryName: name,
-					breweryUrl: url,
-					breweryPhone: number
-				}
-
-				console.log(breweryObject.brewIDIndex);
+				var breweryObject = {state:state, breweryName:name, breweryUrl:url, breweryPhone:number};
+				breweryArray.push(breweryObject);
 
 			});
+
+			// debugging
+			// console.log(breweryArray[1]);
 			$('.add').on('click', function () {
-				var selectedIndex = $(this).data();
-				// console.log(input);
-				saveFavorites(selectedIndex);
+				// var selectedIndex = $(this);
+
+				//This will grab the value of the index
+				var selectedIndex = $(this).data('index');
+				// console.log(selectedIndex);
+				console.log(breweryArray[selectedIndex]);
 			});
+
 		});
 
 	}
