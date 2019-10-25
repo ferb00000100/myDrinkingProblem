@@ -6,13 +6,15 @@ $(document).ready(function () {
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
 
+	function init() {
 
-	// Incomplete Need to add favorites
-	function favorites(x) {
-		$('.add').on('click', function () {
-			var selectedFav = $('<li>').text(x);
+		var getFavs = JSON.parse(localStorage.getItem([i]));
+		if (events === null) {
+			return;
+		} else {
+			$(inputID).attr("placeholder", events);
+		}
 
-		});
 	}
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
@@ -25,8 +27,11 @@ $(document).ready(function () {
 		}).then(function (response) {
 			// console.log(response);
 			var array = response;
-			array.forEach(function (e) {
-				// console.log(e);
+			var breweryArray = [];
+			array.forEach(function (e, i) {
+				i = JSON.stringify(i);
+				// console.log("this is i "+ i);
+				// console.log("this is e "+ e.name);
 				$('.modal').modal({
 					dismissible: true
 				});
@@ -36,32 +41,61 @@ $(document).ready(function () {
 				var state = e.state;
 				var address = e.street;
 				var url = e.website_url;
+				var breweries = $('<div data-index=' + i + '>');
 				var brewList = $('<p>');
-				// brewName = $('<link>').text(name);
-				// brewName.attr({type: 'button', class: 'brewName'});
+
+				// Append the <p> to the <div>
+				breweries.append(brewList);
 
 				// Format phone number
 				number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 				$('.brew-title').html(selectedState);
-				$('.breweries').append(brewList);
+
+				// $('.brew-title').html(selectedState);
+				// $('.breweries').append(brewList);
 
 				// Verify address,  If not print "No Address Provided"
 				if (address === ''){
 					address = 'No Address Provided';
 				}
 				// brewList.append(name + '<br>');
-				brewList.append(name + ' <a class="add btn-floating btn-small waves-effect waves-light' +
+				// Add data-index to assocaite the button to the paragraph
+				brewList.append(name + ' <a data-index=' + i + ' class="add btn-floating btn-small waves-effect' +
+					' waves-light' +
 					' red"><i' +
-					' class="material-icons">+</i></a>' +
-					' <a class="btn-floating btn-small waves-effect waves-light #1065A8"><i' +
-					' class="remove material-icons">-</i></a>' + '<br>');
+					' class="material-icons">+</i></a>' + '<br>');
 				brewList.append(address + ', ' + state + '<br>');
 				brewList.append('<a id="link" href="'+ url +'" target="_blank" >view web site</a>'+'<br>');
 				brewList.append(number);
 				brewList.append('<hr>');
+				$('.breweries').append(breweries);
+
 				$('.modal').modal('open');
+
+				var breweryObject = {state:state, breweryName:name, breweryUrl:url, breweryPhone:number};
+				breweryArray.push(breweryObject);
+
 			});
+
+			// debugging
+			// console.log(breweryArray[1]);
+			$('.add').on('click', function () {
+				// var selectedIndex = $(this);
+
+				//This will grab the value of the index
+				var selectedIndex = $(this).data('index');
+				// console.log(selectedIndex);
+				// console.log(breweryArray[selectedIndex]);
+				var favBrewName = breweryArray[selectedIndex].breweryName;
+				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
+				var favBrew = $('<p>');
+				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+				$('#favorites').append(favBrew);
+				localStorage.setItem(selectedIndex, favBrewName);
+			});
+
 		});
+
 	}
 
 	// getState will take the input of the selector and run the getResults function
@@ -80,11 +114,7 @@ $(document).ready(function () {
 		$('.breweries').empty();
 	});
 
-	$('.add').on('click', function () {
-		console.log("clikced");
-		console.log(this);
-	});
-
+	init();
 });
 
 
