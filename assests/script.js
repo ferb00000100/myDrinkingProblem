@@ -6,15 +6,27 @@ $(document).ready(function () {
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
 
-	function removeFavs() {
+	// function removeFavs() {
 
-		$('.add').on('click', function () {
-			const name = $(this).attr('name');
-			console.log(name);
-			// localStorage.removeItem(name);
-			// $('#' + name).val('add event');
-		});
-	}
+
+			var remove = $(this).attr('remove');
+
+			$('.add').on('click', function () {
+				//This will grab the value of the index
+				var selectedIndex = $(this).data('index');
+				var selectedState = breweryArray[selectedIndex].state;
+				// console.log(selectedIndex);
+				// console.log(breweryArray[selectedIndex]);
+				var favBrewName = breweryArray[selectedIndex].breweryName;
+				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
+				var favBrew = $('<p>');
+				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+				$('.favorites').append(favBrew);
+				// localStorage.setItem(selectedIndex, favBrewName);
+				localStorage.setItem(selectedState, favBrewName);
+
+				});
+	// }
 
 
 	function init() {
@@ -23,9 +35,16 @@ $(document).ready(function () {
 			// console.log(localStorage.getItem(localStorage.key(i)));
 			var getFavBrew = localStorage.getItem(localStorage.key(i));
 			console.log(getFavBrew);
-			var favBrew = $('<p>');
-			favBrew.append('<a id="link" href="" target="_blank" >' + getFavBrew + '</a>'+'<br>');
-			$('.favorites').append(getFavBrew);
+			var mylist = $('<ul>');
+			var favBrew = $('<li>');
+			mylist.append(favBrew);
+			favBrew.append(name + ' <a data-index=' + getFavBrew + ' class="add btn-floating btn-small' +
+				' waves-effect' +
+				' brown' +
+				' darken-1"><i' +
+				' class="material-icons">-</i></a>' );
+			$('.favorites').append(favBrew);
+			favBrew.append(getFavBrew);
 
 		}
 
@@ -47,10 +66,16 @@ $(document).ready(function () {
 			var favBrew = $('<p>');
 			favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
 			$('.favorites').append(favBrew);
+			favBrew.append(name + ' <a data-index=' + selectedState + ' class="add btn-floating btn-small' +
+				' waves-effect' +
+				' brown' +
+				' darken-1"><i' +
+				' class="material-icons">-</i></a>' + '<br>');
 			// localStorage.setItem(selectedIndex, favBrewName);
 			localStorage.setItem(selectedState, favBrewName);
 		});
 	}
+
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
 	// it will open a modal with the results.  Once it is closed the data will be removed.
@@ -113,22 +138,6 @@ $(document).ready(function () {
 			});
 
 			saveFavs(breweryArray);
-			// debugging
-			// console.log(breweryArray[1]);
-			// $('.add').on('click', function () {
-				// var selectedIndex = $(this);
-
-				//This will grab the value of the index
-				// var selectedIndex = $(this).data('index');
-				// console.log(selectedIndex);
-				// console.log(breweryArray[selectedIndex]);
-				// var favBrewName = breweryArray[selectedIndex].breweryName;
-				// var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
-				// var favBrew = $('<p>');
-				// favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
-				// $('.favorites').append(favBrew);
-				// localStorage.setItem(selectedIndex, favBrewName);
-			// });
 
 		});
 
