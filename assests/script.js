@@ -90,7 +90,7 @@ $(document).ready(function () {
 				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
 				var favBrew = $('<p>');
 				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
-				$('#favorites').append(favBrew);
+				$('.favorites').append(favBrew);
 				localStorage.setItem(selectedIndex, favBrewName);
 			});
 

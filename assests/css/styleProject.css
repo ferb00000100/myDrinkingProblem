@@ -27,7 +27,7 @@ body {
   margin-top: 20px;
 }
 
-<<<<<<< HEAD
+
 .section {
   width: 300px;
   height: 100%;
@@ -43,16 +43,15 @@ body {
 }
 
 .minus {
-  float: left;
+  float: right;
 }
 
 .collapsible {
   margin: 0;
 }
-=======
+
 #favorites {
     margin-left: 25px;
     color: #dddddd;
 }
 
->>>>>>> c6fc2e95885f5ec6b5789131f3e4f993eea81276
