@@ -6,56 +6,46 @@ $(document).ready(function () {
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
 
-	// function removeFavs() {
 
+	// Assign the click event to the <ul> tag so you only have one click event.  If you assigned it to the
+	// <li> tag you would have a click event for every <li> element added affecting performance.
+	// You specify the "selector", in this case "li" in the on click function. The li element will bubble up
+	// to the parent to get the click event.
 
-			var remove = $(this).attr('remove');
+	$('#favoriteList').on('click', 'li', function () {
+		// event.preventDefault();
+		$(this).fadeOut(500);
+		var brewery = this.childNodes[2];
 
-			$('.add').on('click', function () {
-				//This will grab the value of the index
-				var selectedIndex = $(this).data('index');
-				var selectedState = breweryArray[selectedIndex].state;
-				// console.log(selectedIndex);
-				// console.log(breweryArray[selectedIndex]);
-				var favBrewName = breweryArray[selectedIndex].breweryName;
-				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
-				var favBrew = $('<p>');
-				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
-				$('.favorites').append(favBrew);
-				// localStorage.setItem(selectedIndex, favBrewName);
-				localStorage.setItem(selectedState, favBrewName);
+		console.log(brewery);
+		localStorage.removeItem(localStorage.key(this));
 
-				});
-	// }
-
-
+	});
 	function init() {
-
 		for(var i =0; i < localStorage.length; i++){
-			// console.log(localStorage.getItem(localStorage.key(i)));
 			var getFavBrew = localStorage.getItem(localStorage.key(i));
-			console.log(getFavBrew);
-			var mylist = $('<ul>');
+			// console.log(localStorage.getItem(localStorage.key(i)));
+			// var outputFavBrew = getFavBrew[1];
+			// console.log(getFavBrew);
+			var mylist = $('#favoriteList');
 			var favBrew = $('<li>');
+
+			$('.favorites').append(mylist);
 			mylist.append(favBrew);
-			favBrew.append(name + ' <a data-index=' + getFavBrew + ' class="add btn-floating btn-small' +
+			// favBrew.append(name + ' <a data-index=' + i + ' class="btn-floating btn-small' +
+			favBrew.append(name + ' <a data-index='+ i +' class="btn-floating btn-small' +
 				' waves-effect' +
 				' brown' +
 				' darken-1"><i' +
 				' class="material-icons">-</i></a>' );
-			$('.favorites').append(favBrew);
 			favBrew.append(getFavBrew);
-
 		}
-
 	}
-
 	function saveFavs(breweryArray){
 		// debugging
-		console.log(breweryArray);
+		// console.log(breweryArray);
 		$('.add').on('click', function () {
 			// var selectedIndex = $(this);
-
 			//This will grab the value of the index
 			var selectedIndex = $(this).data('index');
 			var selectedState = breweryArray[selectedIndex].state;
@@ -63,16 +53,24 @@ $(document).ready(function () {
 			// console.log(breweryArray[selectedIndex]);
 			var favBrewName = breweryArray[selectedIndex].breweryName;
 			var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
-			var favBrew = $('<p>');
-			favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+			var favBrew = $('<li>');
+			// favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
 			$('.favorites').append(favBrew);
-			favBrew.append(name + ' <a data-index=' + selectedState + ' class="add btn-floating btn-small' +
+			favBrew.append(name + ' <a data-index=' + selectedIndex + ' class="btn-floating btn-small' +
 				' waves-effect' +
 				' brown' +
 				' darken-1"><i' +
-				' class="material-icons">-</i></a>' + '<br>');
-			// localStorage.setItem(selectedIndex, favBrewName);
-			localStorage.setItem(selectedState, favBrewName);
+				' class="material-icons">-</i></a>');
+			favBrew.append(favBrewName);
+			// localStorage.setItem(selectedState, favBrewName);
+			// var storageIndex = selectedIndex * 13;
+			// var id = selectedState+selectedIndex;
+			// var storageItem = [{id: selectedState + selectedIndex, name:favBrewName}];
+			// localStorage.setItem(id , JSON.stringify(storageItem));
+
+			localStorage.setItem(selectedState + selectedIndex, favBrewName);
+
+
 		});
 	}
 
