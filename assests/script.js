@@ -6,15 +6,50 @@ $(document).ready(function () {
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
 
+	function removeFavs() {
+
+		$('.add').on('click', function () {
+			const name = $(this).attr('name');
+			console.log(name);
+			// localStorage.removeItem(name);
+			// $('#' + name).val('add event');
+		});
+	}
+
+
 	function init() {
 
-		var getFavs = JSON.parse(localStorage.getItem([i]));
-		if (events === null) {
-			return;
-		} else {
-			$(inputID).attr("placeholder", events);
+		for(var i =0; i < localStorage.length; i++){
+			// console.log(localStorage.getItem(localStorage.key(i)));
+			var getFavBrew = localStorage.getItem(localStorage.key(i));
+			console.log(getFavBrew);
+			var favBrew = $('<p>');
+			favBrew.append('<a id="link" href="" target="_blank" >' + getFavBrew + '</a>'+'<br>');
+			$('.favorites').append(getFavBrew);
+
 		}
 
+	}
+
+	function saveFavs(breweryArray){
+		// debugging
+		console.log(breweryArray);
+		$('.add').on('click', function () {
+			// var selectedIndex = $(this);
+
+			//This will grab the value of the index
+			var selectedIndex = $(this).data('index');
+			var selectedState = breweryArray[selectedIndex].state;
+			// console.log(selectedIndex);
+			// console.log(breweryArray[selectedIndex]);
+			var favBrewName = breweryArray[selectedIndex].breweryName;
+			var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
+			var favBrew = $('<p>');
+			favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+			$('.favorites').append(favBrew);
+			// localStorage.setItem(selectedIndex, favBrewName);
+			localStorage.setItem(selectedState, favBrewName);
+		});
 	}
 
 	// getResults will run the Ajax query to grab the state selected brewery information.
@@ -77,22 +112,23 @@ $(document).ready(function () {
 
 			});
 
+			saveFavs(breweryArray);
 			// debugging
 			// console.log(breweryArray[1]);
-			$('.add').on('click', function () {
+			// $('.add').on('click', function () {
 				// var selectedIndex = $(this);
 
 				//This will grab the value of the index
-				var selectedIndex = $(this).data('index');
+				// var selectedIndex = $(this).data('index');
 				// console.log(selectedIndex);
 				// console.log(breweryArray[selectedIndex]);
-				var favBrewName = breweryArray[selectedIndex].breweryName;
-				var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
-				var favBrew = $('<p>');
-				favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
-				$('.favorites').append(favBrew);
-				localStorage.setItem(selectedIndex, favBrewName);
-			});
+				// var favBrewName = breweryArray[selectedIndex].breweryName;
+				// var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
+				// var favBrew = $('<p>');
+				// favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
+				// $('.favorites').append(favBrew);
+				// localStorage.setItem(selectedIndex, favBrewName);
+			// });
 
 		});
 
