@@ -20,7 +20,7 @@
 
 <body>
 <nav>
-	<div class="nav-wrapper brown darken-3">
+	<div class="nav-wrapper header">
 		<a href="#" class="brand-logo center">My Drinking Problem</a>
 		<ul id="nav-mobile" class="left hide-on-med-and-down">
 			<li><a href="sass.html"><i class="fas fa-beer"></i></a></li>
@@ -31,9 +31,9 @@
 	</div>
 </nav>
 
-<div class="container selectContainer">
-	<select id="states" class="browser-default btn-small amber accent-4">
-		<option selected value="test" disabled selected>Select your City </option>
+<div class="dropdown container selectContainer amber accent-3">
+	<select id="states" class="btn black-text ">
+		<option selected value="" disabled selected>Select your State </option>
 		<option value="Alabama">Alabama</option>
 		<option value="Alaska">Alaska</option>
 		<option value="Arizona">Arizona</option>
@@ -86,13 +86,13 @@
 	</select>
 </div>
 
-<div id="modal1" class="modal white-text">
+<div id="modal1" class="modal">
 	<div class="modal-content">
 		<h4 class="brew-title"></h4>
 		<div class="breweries"></div>
 	</div>
-	<div class="modal-footer white-text">
-		<a class="modal-close waves-effect white-text waves-green btn-flat">close</a>
+	<div class="modal-footer">
+		<a class="modal-close waves-effect waves-green btn-flat">close</a>
 	</div>
 </div>
 
@@ -100,11 +100,11 @@
 <div class="section">
 	<ul class="collapsible">
 		<li>
-			<div class="collapsible-header">
-				<i class="material-icons">star</i>
-				Favorite Beers
-			</div>
-			<div class="collapsible-body"></div>
+		  <div class="collapsible-header">
+			  <i class="material-icons">star</i>
+			  Favorite Breweries
+		  </div>
+		<div class="collapsible-body"></div>
 		</li>
 	</ul>
 	<div class="favorites">

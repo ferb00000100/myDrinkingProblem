@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+	var breweryArray = [];
 	// Display the date and Time
 	var dateTime = moment().format('LLL');
 	$('.date').append(dateTime);
@@ -15,10 +16,11 @@ $(document).ready(function () {
 	$('#favoriteList').on('click', 'li', function () {
 		// event.preventDefault();
 		$(this).fadeOut(500);
-		var brewery = this.childNodes[2];
-
+		// var brewery = this.childNodes[2];
+		var brewery = this;
+		brewery.type;
 		console.log(brewery);
-		localStorage.removeItem(localStorage.key(this));
+		localStorage.removeItem(localStorage.key(brewery));
 
 	});
 	function init() {
@@ -29,7 +31,7 @@ $(document).ready(function () {
 			// console.log(getFavBrew);
 			var mylist = $('#favoriteList');
 			var favBrew = $('<li>');
-
+			// console.log(breweryArray);
 			$('.favorites').append(mylist);
 			mylist.append(favBrew);
 			// favBrew.append(name + ' <a data-index=' + i + ' class="btn-floating btn-small' +
@@ -53,7 +55,7 @@ $(document).ready(function () {
 			// console.log(breweryArray[selectedIndex]);
 			var favBrewName = breweryArray[selectedIndex].breweryName;
 			var favBrewUrl = breweryArray[selectedIndex].breweryUrl;
-			var favBrew = $('<li>');
+			var favBrew = $(`<li id=(${selectedState} + ${selectedIndex})>`);
 			// favBrew.append('<a id="link" href="'+ favBrewUrl +'" target="_blank" >' + favBrewName + '</a>'+'<br>');
 			$('.favorites').append(favBrew);
 			favBrew.append(name + ' <a data-index=' + selectedIndex + ' class="btn-floating btn-small' +
@@ -85,7 +87,7 @@ $(document).ready(function () {
 		}).then(function (response) {
 			// console.log(response);
 			var array = response;
-			var breweryArray = [];
+			// var breweryArray = [];
 			array.forEach(function (e, i) {
 				i = JSON.stringify(i);
 				// console.log("this is i "+ i);
@@ -128,6 +130,7 @@ $(document).ready(function () {
 				brewList.append('<hr>');
 				$('.breweries').append(breweries);
 
+
 				$('.modal').modal('open');
 
 				var breweryObject = {state:state, breweryName:name, breweryUrl:url, breweryPhone:number};
@@ -149,7 +152,7 @@ $(document).ready(function () {
 		getResults(selectedState);
 	}
 
-// on selection of the city the get State function runs.
+// on selection of the state the get State function runs.
 	$("select").change(getState);
 
 // this function clears out the breweries from previous searches to avoid stacking
