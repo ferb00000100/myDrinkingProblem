@@ -4,11 +4,16 @@ html {
 
 body {
   height: 100%;
+  /*opacity: .75;*/
   background: #870000; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #190a05, #870000);
-  background: linear-gradient(to right, #190a05, #870000);
+  background: linear-gradient(to right, #190a05, #870000, transparent),url("../images/beer_brewing_istock_silvrshootr.jpg");
+  background-size: cover;
 }
 
+.header {
+  background: linear-gradient(to right, #190a05, #870000, transparent);
+}
 .selectContainer {
   width: 20%;
 }
@@ -18,18 +23,18 @@ body {
   height: 85% !important ;
 }
 
-.favs {
-  align-content: end;
-}
-
-.row {
-  display: block;
-  margin-top: 20px;
-}
+/*.favs {*/
+/*  align-content: end;*/
+/*}*/
+/**/
+/*.row {*/
+/*  display: block;*/
+/*  margin-top: 20px;*/
+/*}*/
 
 
 .section {
-  width: 380px;
+  width: 400px;
   height: 100%;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -42,9 +47,9 @@ body {
   float: left;
 }
 
-.minus {
-  float: right;
-}
+/*.minus {*/
+/*  float: right;*/
+/*}*/
 
 .collapsible {
   margin: 0;
@@ -62,10 +67,20 @@ li {
 
 .favorites {
     margin-left: 25px;
-
 }
 
+.dropdown {
+  float: right;
+}
 
+#states{
+   background: linear-gradient(to right, #190a05, #870000);
+ }
 
+.modal {
+  background: linear-gradient(to right, #190a05, #870000);
 
-
+}
+.modal-footer {
+  background: linear-gradient(to right, #190a05, #870000);
+}
