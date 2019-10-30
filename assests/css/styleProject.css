@@ -34,16 +34,12 @@ body {
 
 
 .section {
+  /*background: url("../images/beer.png");*/
   width: 400px;
   height: 100%;
   padding-top: 0px;
   padding-bottom: 0px;
-  background: rgb(244, 208, 10);
-  background: linear-gradient(
-    180deg,
-    rgba(244, 208, 10, 1) 0%,
-    rgba(242, 152, 0, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(244, 208, 10, 1) 0%, rgba(242, 152, 0, 1) 55%, transparent),url("../images/beer.png");
   float: left;
 }
 
